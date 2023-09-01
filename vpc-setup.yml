@@ -134,7 +134,7 @@
         routes: 
           - dest: 0.0.0.0/0
             gateway_id: "{{NATGW_out.nat_gateway_id}}"
-      register: pubRT_out
+      register: privRT_out
 
     - set_fact:
         vpc_id: "{{vpcout.vpc.id}}"
