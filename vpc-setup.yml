@@ -109,7 +109,7 @@
           - "{{pubsub3_out.subnet.id}}"
         routes: 
           - dest: 0.0.0.0/0
-            gateway_id: "{{igw_out.gateway_id}}"
+            gateway_id: "{{igw_out.gateway.id}}"
       register: pubRT_out
 
     - name: Create new nat gateway and allocate new EIP if a nat gateway does not yet exist in the account
@@ -133,7 +133,7 @@
           - "{{privsub3_out.subnet.id}}"
         routes: 
           - dest: 0.0.0.0/0
-            gateway_id: "{{NATGW_out.gateway_id}}"
+            gateway_id: "{{NATGW_out.gateway.id}}"
       register: pubRT_out
 
 
