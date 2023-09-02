@@ -38,6 +38,7 @@
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{bastion_ami}}"
+        vpc_subnet_id: "{{zone1}}"
         wait: yes
         wait_timeout: 300
         instance_tags:
