@@ -38,7 +38,7 @@
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{bastion_ami}}"
-        vpc_subnet_id: "{{zone1}}"
+        vpc_subnet_id: "{{ pubsub1id }}"
         wait: yes
         wait_timeout: 300
         instance_tags:
@@ -52,6 +52,7 @@
           Owner: Devops Team
         group_id: "{{BastionSG_out.group_id}}"
       register: bastionHost_out
+
 
     
 
