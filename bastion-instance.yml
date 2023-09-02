@@ -20,7 +20,7 @@
       ec2_group:
         name: Bastion-host-sg
         description: Allow port 22 from everywhere and all port within Bastion-host-sg
-        vpc_id: "{{vpcout.vpc.id}}"
+        vpc_id: "{{vpc_id}}"
         region: "{{region}}"
         rules: 
           - proto: tcp
