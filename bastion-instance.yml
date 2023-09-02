@@ -50,7 +50,6 @@
           Project: Vprofile
           Owner: Devops Team
         group_id: "{{BastionSG_out.group_id}}"
-        groupId: "{{BastionSG_out.group_id}}"
       register: bastionHost_out
 
     
