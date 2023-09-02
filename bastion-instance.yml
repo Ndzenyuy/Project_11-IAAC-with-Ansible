@@ -1,0 +1,53 @@
+---
+- name: Setup Vprofile Bastion Host
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: Import VPC Setup variable
+      include_vars: vars/bastion_setup
+    
+    - name: Import VPC Setup variable
+      include_vars: vars/output_vars
+
+    - name: Create vprofileec2 key
+      ec2_key: 
+        name: vprofile-key
+        region: "{{region}}"
+      register: key_out
+
+    - name: Crete Sec group for bastion hosts
+      ec2_group:
+        name: Bastion-host-sg
+        description: Allow port 22 from everywhere and all port within Bastion-host-sg
+        vpc_id: "{{vpcout.vpc.id}}"
+        region: "{{region}}"
+        rules: 
+          - proto: tcp
+          from_port: 22
+          to_port: 22
+          cidr_ip: "{{MYIP}}"
+      register: BastionSG_out
+
+    - name: Creating Bastion Host
+      ec2:
+        key_name: vprofile-key
+        region: "{{region}}"
+        instance_type: t2.micro
+        image: "{{bastion_ami}}"
+        wait: yes
+        wait_timeout: 300
+        instance_tags:
+          Name: "Bastion-host"
+          Project: vprofile
+          owner: Devops Team
+        exact_count: 1
+        count_tag:
+          Name: "Bastion-host"
+          Project: Vprofile
+          Owner: Devops Team
+        group_id: "{{BastionSG_out.group_id}}"
+      register: bastionHost_out
+
+    
+
