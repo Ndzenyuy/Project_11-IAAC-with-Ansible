@@ -3,7 +3,7 @@
 Greetings fam, ever wondered about writting code and lauching an infrastructure without having to open the different services on the console and create and wait for the creation to finish before moving on to the next service? Well Ansible brings us good news. With Ansible Playbooks, I was able to build an Infrastructure from a Control machine(EC2) instance. The code is stored in my repo on Github (edited on my local machine), then the Control machine, with an Ansible installation clones the code, from it, builds the infrastruceture. I actually used a variable file, which was imported into the playbook, the vars_file serves the purpose of making infrastructure code reusable (say launch the same infrastructure in another region, by just modifying the region's specs say the ami etc). One key lession here never never neveeeeer to be forgotten: use IAM Roles for the control machine rather than hardcoding your Secret keys into the playbook, for it can be mistakenly pushed to Github, by the way if you push your secret keys to Github, you will be detained in DevOps top security detaintion center for 3months(i hope you know am joking. As a teacher, i used to associate an important concept to a joke, the students will pause for a while and laugh, the concept will stick since they'll remember the joke)
 
 ## Architecture
-![Project Architecture](architecture)
+![Project Architecture](https://github.com/Ndzenyuy/Project_11-IAAC-with-Ansible/blob/main/images/project11_architecture.jpg)
 
 ## Steps
 
@@ -296,8 +296,8 @@ cd Project_11-IAAC-with-Ansible
 ```
 ansible-playbook vpc-setup.yml
 ```
-
-![Ansible playbook creates vpc with setup](vpc setup)
+The console will exicute the different plays to build the setup
+![Ansible playbook creates vpc with setup](https://github.com/Ndzenyuy/Project_11-IAAC-with-Ansible/blob/main/images/ansible%20playbook%20run.png)
 
 The playbook will create a new file called output_vars in the vars/ folder. Copy the contents to our local machine and create the same file in the vars folder and paste the copied content. Push save the project and push to github. Now to launch the EC2 instances within our setup, run the following
 
@@ -306,7 +306,7 @@ ansible-playbook bastion-instance.yml
 ```
 
 Now we can check the list of services created
-![](created vpc)
-![](created subnets)
-![](lauched instances)
+![](https://github.com/Ndzenyuy/Project_11-IAAC-with-Ansible/blob/main/images/vpc%20creation.png)
+![](https://github.com/Ndzenyuy/Project_11-IAAC-with-Ansible/blob/main/images/subnets.png)
+![](https://github.com/Ndzenyuy/Project_11-IAAC-with-Ansible/blob/main/images/running%20instances.png)
 
